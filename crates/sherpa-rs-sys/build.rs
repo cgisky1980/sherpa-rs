@@ -227,6 +227,9 @@ fn verify_checksum(actual_hash: &str, expected_hash: &str) {
 }
 
 fn main() {
+    // Force use of pre-compiled onnxruntime 1.17.1
+    std::env::set_var("SHERPA_ONNX_USE_PRE_INSTALLED_ONNXRUNTIME_IF_AVAILABLE", "OFF");
+    
     rerun_if_changed(&["wrapper.h", "dist.json", "checksum.txt", "./sherpa-onnx"]);
     rerun_on_env_changes(&[
         "SHERPA_BUILD_SHARED_LIBS",
